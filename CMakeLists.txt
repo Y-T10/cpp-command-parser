@@ -44,7 +44,7 @@ add_compile_options(
 add_library(command_parser INTERFACE)
 add_library(command_parser::command_parser ALIAS command_parser)
 target_include_directories(command_parser INTERFACE include)
-target_compile_features(command_parser PUBLIC cxx_std_17)
+target_compile_features(command_parser cpp-command-parser cxx_std_17)
 
 if (${ENABLE_EXAMPLES})
         add_executable(cpp_command_parser_sample example_main.cpp)
