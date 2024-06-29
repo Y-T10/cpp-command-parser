@@ -4,6 +4,14 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
+set(SUB_PROJECT OFF)
+if (CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+        set(SUB_PROJECT ON)
+endif()
+
+option(ENABLE_EXAMPLES "Enable building example programs." ${SUB_PROJECT})
+option(ENABLE_TESTS "Enable Building tests." ${SUB_PROJECT})
+
 project(CppCommandParser
         VERSION 0.0.1 
         LANGUAGES CXX
