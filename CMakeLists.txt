@@ -41,14 +41,18 @@ add_compile_options(
         -Werror
 )
 
-add_subdirectory(external)
 
 add_library(command_parser INTERFACE)
 add_library(command_parser::command_parser ALIAS command_parser)
 target_include_directories(command_parser INTERFACE include)
 
-add_executable(cpp_command_parser_sample example_main.cpp)
-target_link_libraries(cpp_command_parser_sample PUBLIC command_parser)
+if (${ENABLE_EXAMPLES})
+        add_executable(cpp_command_parser_sample example_main.cpp)
+        target_link_libraries(cpp_command_parser_sample PUBLIC command_parser)
+endif()
 
-enable_testing()
-add_subdirectory(test)
+if (${ENABLE_TESTS})
+        add_subdirectory(external)
+        enable_testing()
+        add_subdirectory(test)
+endif()
