@@ -17,7 +17,6 @@ project(CppCommandParser
         LANGUAGES CXX
 )
 
-set(CMAKE_CXX_STANDARD 17)
 add_compile_options(
         -Wcast-align
         -Wpedantic
@@ -45,10 +44,12 @@ add_compile_options(
 add_library(command_parser INTERFACE)
 add_library(command_parser::command_parser ALIAS command_parser)
 target_include_directories(command_parser INTERFACE include)
+target_compile_features(command_parser PUBLIC cxx_std_17)
 
 if (${ENABLE_EXAMPLES})
         add_executable(cpp_command_parser_sample example_main.cpp)
         target_link_libraries(cpp_command_parser_sample PUBLIC command_parser)
+        target_compile_features(cpp_command_parser_sample PRIVATE cxx_std_17)
 endif()
 
 if (${ENABLE_TESTS})
