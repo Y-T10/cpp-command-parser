@@ -36,6 +36,7 @@ add_compile_options(
 add_subdirectory(external)
 
 add_library(command_parser INTERFACE)
+add_library(command_parser::command_parser ALIAS command_parser)
 target_include_directories(command_parser INTERFACE include)
 
 add_executable(cpp_command_parser_sample example_main.cpp)
